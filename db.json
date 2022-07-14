@@ -19,18 +19,18 @@
     {
       "id": 3,
       "name": "Smartphone",
-      "price": 950,
+      "price": "1500",
       "quantity": 124,
-      "selected": false,
+      "selected": true,
       "available": true
     },
     {
-      "id": 4,
-      "name": "pp",
-      "price": "152",
-      "quantity": "12",
+      "name": "ccc",
+      "price": "257",
+      "quantity": "3",
       "selected": true,
-      "available": true
+      "available": false,
+      "id": 4
     }
   ]
 }

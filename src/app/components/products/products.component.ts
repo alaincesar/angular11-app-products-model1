@@ -3,8 +3,9 @@ import {ProductsService} from "../../services/products.service";
 import {Product} from "../../model/product.model";
 import {Observable, of} from "rxjs";
 import {catchError, map, startWith} from "rxjs/operators";
-import {AppDataState, DataStateEnum} from "../../state/product.state";
+import {ActionEvent, AppDataState, DataStateEnum, productActionsTypes} from "../../state/product.state";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-products',
@@ -90,5 +91,20 @@ export class ProductsComponent implements OnInit {
 
   onEdit(p: Product) {
     this.router.navigateByUrl("/editProduct/"+p.id)
+  }
+
+  onActionEvent($event: ActionEvent) {
+    switch ($event.type) {
+      case productActionsTypes.GET_ALL_PRODUCTS: this.onGetAllProducts();break;
+      case productActionsTypes.GET_SELECTED_PRODUCTS: this.onGetSelectedProducts();break;
+      case productActionsTypes.GET_AVAILABLE_PRODUCTS: this.onGetAvailableProducts();break;
+      case productActionsTypes.SEARCH_PRODUCTS: this.onSearch($event.payload);break;
+      case productActionsTypes.NEW_PRODUCT: this.onNewProducts();break;
+      case productActionsTypes.SELECT_PRODUCT: this.onSelect($event.payload);break;
+      case productActionsTypes.DELETE_PRODUCT: this.onDelete($event.payload);break;
+      case productActionsTypes.EDIT_PRODUCT: this.onEdit($event.payload);break;
+
+    }
+
   }
 }
